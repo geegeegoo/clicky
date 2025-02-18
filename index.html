@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>scotty</title>
+<style>
+body {
+    background-color: black;
+    color: white;
+    font-family: "Comic Sans MS", cursive, sans-serif; /* Comic Sans with fallbacks */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-height: 100vh; /* Ensure full viewport height */
+    margin: 0; /* Remove default margins */
+}
+
+#myButton {
+    width: 100px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    background-image: url("https://files.catbox.moe/r6d6m1.png");
+    background-size: cover;
+    background-color: transparent;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Space between button and text */
+}
+
+#myButton:active {
+    transform: scale(1.1);
+    animation: wobble 0.2s linear;
+}
+
+@keyframes wobble {
+    0% { transform: scale(1.1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    75% { transform: scale(1.1) rotate(-5deg); }
+    100% { transform: scale(1.1) rotate(0deg); }
+}
+
+p {
+    text-align: center; /* Center the click count text */
+}
+</style>
+</head>
+<body>
+
+<button id="myButton"></button>
+<p>Clicks: <span id="clickCount">0</span></p>
+
+<audio id="clickSound">
+    <source src="https://files.catbox.moe/q4huuf.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    let clickCount = 0;
+    const myButton = document.getElementById("myButton");
+    const clickCountDisplay = document.getElementById("clickCount");
+    const clickSound = document.getElementById("clickSound");
+
+    myButton.addEventListener("click", function() {
+        clickCount++;
+        clickCountDisplay.textContent = clickCount;
+
+        clickSound.currentTime = 0;
+        clickSound.play();
+    });
+</script>
+
+</body>
+</html>
